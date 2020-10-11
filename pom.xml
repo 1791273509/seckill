@@ -133,6 +133,13 @@
             <artifactId>spring-test</artifactId>
             <version>4.1.7.RELEASE</version>
         </dependency>
+
+<!--        引入Lombok依赖-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>seckill</finalName>
