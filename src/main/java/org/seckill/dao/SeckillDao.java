@@ -4,13 +4,14 @@ import org.apache.ibatis.annotations.Param;
 import org.seckill.entity.Seckill;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public interface SeckillDao {
     /**
      * 自己测试用的
      */
-
+new HashMap
     int updatenum(@Param("seckillId") long seckillId,@Param("number") long num);
     /**
      * 减库存
