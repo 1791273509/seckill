@@ -9,6 +9,9 @@ public enum SeckillStateEnum {
     END(0, "秒杀结束"),
     INNER_ERROR(-2, "系统异常"),
     REPEAT_KILL(-1, "重复秒杀"),
+
+    MY(-100,"测试用"),
+
     SUCCESS(1, "秒杀成功");
     private int state;
 

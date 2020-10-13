@@ -11,18 +11,24 @@ import org.seckill.exception.RepeatKillException;
 import org.seckill.exception.SeckillCloseException;
 import org.seckill.exception.SeckillException;
 import org.seckill.service.SeckillService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.DigestUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
 import java.util.List;
 
+import static org.seckill.enums.SeckillStateEnum.SUCCESS;
+@Service
 @Slf4j
 public class SeckillServiceimpl implements SeckillService {
 
-    private SeckillDao seckillDao;
-
+    @Autowired
     private SuccessKilledDao successKilledDao;
+    @Autowired
+    private SeckillDao seckillDao;
 
 //md5盐值字符串，用于混淆
     private final String salt = "reqwreqrqewrqe";
@@ -60,6 +66,13 @@ public class SeckillServiceimpl implements SeckillService {
         return new Exposer(true,md5,seckillId);
     }
 
+    @Transactional
+    /**
+     * 使用注解控制事务方法的优点:
+     * 1.开发团队达成一致约定，明确标注事务方法的编程风格
+     * 2.保证事务方法的执行时间尽可能短，不要穿插其他网络操作RPC/HTTP请求或者剥离到事务方法外部
+     * 3.不是所有的方法都需要事务，如只有一条修改操作、只读操作不要事务控制
+     */
     @Override
     public SeckillExecution executeSeckill(long seckillId, long userPhone, String md5) throws SeckillException, RepeatKillException, SeckillCloseException {
         try {
@@ -78,7 +91,7 @@ public class SeckillServiceimpl implements SeckillService {
                 }else{
 //                秒杀成功
                     SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);
-                    return new SeckillExecution(seckillId,1,"秒杀成功",successKilled);
+                    return new SeckillExecution(seckillId, SUCCESS,successKilled);
 
                 }
 

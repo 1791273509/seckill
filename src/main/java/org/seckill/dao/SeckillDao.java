@@ -11,7 +11,6 @@ public interface SeckillDao {
     /**
      * 自己测试用的
      */
-new HashMap
     int updatenum(@Param("seckillId") long seckillId,@Param("number") long num);
     /**
      * 减库存
