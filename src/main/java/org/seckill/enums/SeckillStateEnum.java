@@ -10,7 +10,7 @@ public enum SeckillStateEnum {
     INNER_ERROR(-2, "系统异常"),
     REPEAT_KILL(-1, "重复秒杀"),
 
-    MY(-100,"测试用"),
+    MY(-100,"秒杀测试用例"),
 
     SUCCESS(1, "秒杀成功");
     private int state;
@@ -18,7 +18,7 @@ public enum SeckillStateEnum {
     public int getState() {
         return state;
     }
-
+    
     public String getStateInfo() {
         return stateInfo;
     }
