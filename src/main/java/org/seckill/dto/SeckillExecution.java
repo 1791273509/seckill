@@ -31,10 +31,10 @@ public class SeckillExecution {
     }
 
     //秒杀失败
-    public SeckillExecution(long seckillId, int state, String stateInfo) {
+    public SeckillExecution(long seckillId, SeckillStateEnum seckillStateEnum) {
         this.seckillId = seckillId;
-        this.state = state;
-        this.stateInfo = stateInfo;
+        this.state = seckillStateEnum.getState();
+        this.stateInfo = seckillStateEnum.getStateInfo();
     }
 
 
