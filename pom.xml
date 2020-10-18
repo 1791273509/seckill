@@ -140,6 +140,35 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
         </dependency>
+
+
+<!--     redis客户端   引入jedis-->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+
+<!--        protostuff 序列化
+protostuff是一个基于protobuf实现的序列化方法，
+它较于protobuf最明显的好处是，
+在几乎不损耗性能的情况下做到了不用我们写.proto文件来实现序列化。
+使用它也非常简单，所以直接上代码。
+-->
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-core</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dyuproject.protostuff</groupId>
+            <artifactId>protostuff-runtime</artifactId>
+            <version>1.0.8</version>
+
+        </dependency>
+
+
     </dependencies>
     <build>
         <finalName>seckill</finalName>
