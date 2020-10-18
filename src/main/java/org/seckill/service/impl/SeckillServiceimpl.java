@@ -95,22 +95,23 @@ public class SeckillServiceimpl implements SeckillService {
                 throw new SeckillException("seckill data rewrite");
             }
 //        执行秒杀逻辑
-            int number = seckillDao.reduceNumber(seckillId, new Date());
-            if (number <= 0) {
-                throw new SeckillCloseException("seckill is closed");
+            int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
+            if (insertCount <= 0) {
+                throw new RepeatKillException("seckill repeate");
             } else {
-                int insertCount = successKilledDao.insertSuccessKilled(seckillId, userPhone);
-                if (insertCount <= 0) {
-                    throw new RepeatKillException("seckill repeate");
-
+//
+                int number = seckillDao.reduceNumber(seckillId, new Date());
+                if (number <= 0) {
+                    throw new SeckillCloseException("seckill is closed");
                 } else {
-//                秒杀成功
+//                    秒杀成功
                     SuccessKilled successKilled = successKilledDao.queryByIdWithSeckill(seckillId, userPhone);
                     return new SeckillExecution(seckillId, SUCCESS, successKilled);
 
                 }
 
             }
+
         }
 //        捕获我们自定义的子类异常
         catch (SeckillCloseException e) {
